@@ -4,13 +4,13 @@ let intentos = 0;
 function iniciarNuevoJuego() {
     numeroSecreto = Math.floor(Math.random() * 10) + 1;
     intentos = 0;
-    document.getElementById('mensaje').textContent = '';
-    document.getElementById('entradaNumero').value = '';
-    document.getElementById('botonNuevoJuego').style.display = 'none';
+    document.getElementById('message').textContent = '';
+    document.getElementById('guessInput').value = '';
+    document.getElementById('newGameButton').style.display = 'none';
 }
 
-document.getElementById('botonIntentar').addEventListener('click', function() {
-    const adivinanza = parseInt(document.getElementById('entradaNumero').value);
+document.getElementById('guessButton').addEventListener('click', function() {
+    const adivinanza = parseInt(document.getElementById('guessInput').value);
     intentos++;
 
     if (isNaN(adivinanza)) {
@@ -19,16 +19,17 @@ document.getElementById('botonIntentar').addEventListener('click', function() {
     }
 
     if (adivinanza < numeroSecreto) {
-        document.getElementById('mensaje').textContent = 'El número secreto es mayor.';
+        document.getElementById('message').textContent = 'El número secreto es mayor.';
     } else if (adivinanza > numeroSecreto) {
-        document.getElementById('mensaje').textContent = 'El número secreto es menor.';
+        document.getElementById('message').textContent = 'El número secreto es menor.';
     } else {
-        document.getElementById('mensaje').textContent = `¡Felicidades! Adivinaste el número en ${intentos} intento(s).`;
-        document.getElementById('botonNuevoJuego').style.display = 'block';
+        document.getElementById('message').textContent = `¡Felicidades! Adivinaste el número en ${intentos} intento(s).`;
+        document.getElementById('newGameButton').style.display = 'block';
     }
 
-    document.getElementById('entradaNumero').value = '';
+    document.getElementById('guessInput').value = '';
 });
 
-document.getElementById('botonNuevoJuego').addEventListener('click', iniciarNuevoJuego);
+document.getElementById('newGameButton').addEventListener('click', iniciarNuevoJuego);
+
 iniciarNuevoJuego();
